@@ -22,7 +22,7 @@ type State = {|
   initialOffset: {| x: number, y: number |},
 |};
 
-type Props<T> = PagerRendererProps<T>;
+type Props<T> = PagerRendererProps<T> & {bounces?: boolean};
 
 export default class TabViewPagerScroll<T: *> extends React.Component<
   Props<T>,
@@ -32,6 +32,7 @@ export default class TabViewPagerScroll<T: *> extends React.Component<
 
   static defaultProps = {
     canJumpToTab: () => true,
+    bounces: false,
   };
 
   constructor(props: Props<T>) {
@@ -151,7 +152,7 @@ export default class TabViewPagerScroll<T: *> extends React.Component<
         overScrollMode="never"
         scrollEnabled={this.props.swipeEnabled}
         automaticallyAdjustContentInsets={false}
-        bounces={false}
+        bounces={this.props.bounces}
         alwaysBounceHorizontal={false}
         scrollsToTop={false}
         showsHorizontalScrollIndicator={false}
