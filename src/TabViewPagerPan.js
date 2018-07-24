@@ -226,7 +226,7 @@ export default class TabViewPagerPan<T: *> extends React.Component<Props<T>> {
     const { panX, offsetX, navigationState, layout, children } = this.props;
     const { width } = layout;
     const { routes } = navigationState;
-    const maxTranslate = width * (routes.length - 1);
+    const maxTranslate = Math.abs(width * (routes.length - 1));
     const translateX = Animated.add(panX, offsetX).interpolate({
       inputRange: [-maxTranslate, 0],
       outputRange: [-maxTranslate, 0],
